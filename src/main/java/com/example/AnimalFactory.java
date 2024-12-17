@@ -1,9 +1,5 @@
 package com.example;
 
-import com.example.Animals.Chien;
-import com.example.Animals.Chat;
-import com.example.Animals.Lion;
-
 public class AnimalFactory {
 
     public static Animal createAnimal(String type, String name) {
@@ -20,11 +16,11 @@ public class AnimalFactory {
 
     public static void main(String[] args) {
         Animal chien = AnimalFactory.createAnimal("Chien", "Rex");
-        Animal chat = AnimalFactory.createAnimal("Chat", "Mimi");
+        Animal chat = AnimalFactory.createAnimal("Chat", "Meeko");
         Animal lion = AnimalFactory.createAnimal("Lion", "Simba");
 
-        System.out.println(chien.getType() + " " + chien.getName());
-        System.out.println(chat.getType() + " " + chat.getName());
-        System.out.println(lion.getType() + " " + lion.getName());
+        System.out.println(" Espece : " + chien.getType() + " nom : " + chien.getName());
+        System.out.println(" Espece : " + chat.getType() + " nom : " + chat.getName());
+        System.out.println(" Espece : " + lion.getType() + " nom : " + lion.getName());
     }
 }
