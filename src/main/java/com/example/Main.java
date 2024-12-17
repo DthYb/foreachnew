@@ -6,6 +6,7 @@ public class Main {
         Boolean status = false;
         if (!status) {
             slg = new Singleton("test");
+            status = true;
             System.err.println(slg);
         }
         System.err.println(slg);
