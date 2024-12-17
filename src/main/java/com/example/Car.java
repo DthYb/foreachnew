@@ -98,7 +98,7 @@ public class Car {
             clearScreen();
             Car voiture = new Car.Builder("Hybride")
                     .setNombreDeSieges(5)
-                    .setCouleurCarrosserie("Rouge")
+                    .setCouleurCarrosserie("Noir")
                     .setCouleurInterieure("Noir")
                     .setBoiteDeVitesse("BVA")
                     .setTailleJantes(16)
