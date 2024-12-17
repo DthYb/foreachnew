@@ -75,9 +75,14 @@ public class Car {
             if (motorisation == null) {
                 throw new IllegalArgumentException("La motorisation ne peut pas être nulle.");
             }
+            if (motorisation.equalsIgnoreCase("Hybrid")) {
+                if (!(couleurCarrosserie.equalsIgnoreCase("ROUGE") && couleurInterieure.equalsIgnoreCase("ROUGE"))) {
+                    throw new IllegalArgumentException("La couleur du véhicule hybrid doit être ROUGE.");
+                }
+            }
             if (motorisation.equalsIgnoreCase("DIESEL")) {
                 if (!(couleurCarrosserie.equalsIgnoreCase("NOIR") && couleurInterieure.equalsIgnoreCase("NOIR"))) {
-                    throw new IllegalArgumentException("La couleur du véhicule doit être NOIR.");
+                    throw new IllegalArgumentException("La couleur du véhicule diesel doit être NOIR.");
                 }
             } else {
                 if (tailleJantes != 16) {
