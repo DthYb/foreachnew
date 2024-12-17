@@ -1,91 +1,52 @@
 package com.example;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Car {
-    private motorisation moteur;
-    private int sièges;
-    private String couleur;
-    private boite boitedevitesse;
-    private int jantes;
-    private Options options;
 
-    public Car(motorisation moteur, int sièges, String couleur, boite boitedevitesse, int jantes, Options options) {
-        this.moteur = moteur;
-        this.sièges = sièges;
-        this.couleur = couleur;
-        this.boitedevitesse = boitedevitesse;
-        this.jantes = jantes;
-        this.options = options;
-    }
+    private String engine;
+    private int numberOfSeats;
+    private String innerColor;
+    private String outsideColor;
+    private GearBox gearBox;
+    private int rim;
+    private Set<String> options;
 
-    enum boite {
-        auto,
-        manu
-    }
-
-    enum motorisation {
-        Hybrid,
-        Diesel,
-        Essence,
-        Electrique
-    }
-
-    public motorisation getMoteur() {
-        return moteur;
-    }
-
-    public void setMoteur(motorisation moteur) throws Exception {
-        if (moteur == null) {
-            throw new Exception("Le moteur n'est pas inscrit");
+    public Car() {
+        numberOfSeats = 4;
+        gearBox = GearBox.BVM;
+        rim = 15;
+        options = new HashSet<>();
+        if (engine != null && engine == "diesel") {
+            innerColor = "noir";
+            outsideColor = "noir";
+        } else {
+            rim = 16;
+            gearBox = GearBox.BVA;
         }
-        this.moteur = moteur;
     }
 
-    public int getSièges() {
-        return sièges;
+    public Car withEngine(String engine) {
+        this.engine = engine;
+        return this;
     }
 
-    public void setSièges(int sièges) {
-        if (sièges < 4) {
-            sièges = 4;
-        }
-        this.sièges = sièges;
+    public Car withNumberOfSeats(int numberOfSeats) {
+        this.numberOfSeats = numberOfSeats;
+        return this;
     }
 
-    public String getCouleur() {
-        return couleur;
+    public Car withOption(String option) {
+        options.add(option);
+        return this;
     }
 
-    public void setCouleur(String couleur) {
-        this.couleur = couleur;
+    public enum GearBox {
+        BVM, BVA;
     }
 
-    public boite getBoitedevitesse() {
-        return boitedevitesse;
-    }
-
-    public void setBoitedevitesse(boite boitedevitesse) {
-        if (boitedevitesse == null) {
-            boitedevitesse = boite.auto;
-        }
-        this.boitedevitesse = boitedevitesse;
-    }
-
-    public int getJantes() {
-        return jantes;
-    }
-
-    public void setJantes(int jantes) {
-        if (jantes < 15) {
-            jantes = 15;
-        }
-        this.jantes = jantes;
-    }
-
-    public void setOptions(Options options) {
-        this.options = options;
-    }
-
-    public Options getOptions() {
-        return options;
+    public static void main(String[] args) {
+        var car = new Car().withEngine("diesel").withOption("GSP").withOption("tuner");
     }
 }
