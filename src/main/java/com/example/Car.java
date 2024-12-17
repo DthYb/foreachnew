@@ -4,49 +4,85 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Car {
+    private final String motorisation;
+    private final int nombreDeSieges;
+    private final String couleurCarrosserie;
+    private final String couleurInterieure;
+    private final String boiteDeVitesse;
+    private final int tailleJantes;
 
-    private String engine;
-    private int numberOfSeats;
-    private String innerColor;
-    private String outsideColor;
-    private GearBox gearBox;
-    private int rim;
-    private Set<String> options;
+    private Car(Builder builder) {
+        this.motorisation = builder.motorisation;
+        this.nombreDeSieges = builder.nombreDeSieges;
+        this.couleurCarrosserie = builder.couleurCarrosserie;
+        this.couleurInterieure = builder.couleurInterieure;
+        this.boiteDeVitesse = builder.boiteDeVitesse;
+        this.tailleJantes = builder.tailleJantes;
+    }
 
-    public Car() {
-        numberOfSeats = 4;
-        gearBox = GearBox.BVM;
-        rim = 15;
-        options = new HashSet<>();
-        if (engine != null && engine == "diesel") {
-            innerColor = "noir";
-            outsideColor = "noir";
-        } else {
-            rim = 16;
-            gearBox = GearBox.BVA;
+    @Override
+    public String toString() {
+        return "Car{" +
+                "motorisation='" + motorisation + '\'' +
+                ", nombreDeSieges=" + nombreDeSieges +
+                ", couleurCarrosserie='" + couleurCarrosserie + '\'' +
+                ", couleurInterieure='" + couleurInterieure + '\'' +
+                ", boiteDeVitesse='" + boiteDeVitesse + '\'' +
+                ", tailleJantes=" + tailleJantes +
+                '}';
+    }
+
+    public static class Builder {
+        private final String motorisation;
+        private int nombreDeSieges = 4;
+        private String couleurCarrosserie = "Inconnue";
+        private String couleurInterieure = "Inconnue";
+        private String boiteDeVitesse = "BVM";
+        private int tailleJantes = 15;
+
+        public Builder(String motorisation) {
+            this.motorisation = motorisation;
         }
-    }
 
-    public Car withEngine(String engine) {
-        this.engine = engine;
-        return this;
-    }
+        public Builder setNombreDeSieges(int nombreDeSieges) {
+            this.nombreDeSieges = nombreDeSieges;
+            return this;
+        }
 
-    public Car withNumberOfSeats(int numberOfSeats) {
-        this.numberOfSeats = numberOfSeats;
-        return this;
-    }
+        public Builder setCouleurCarrosserie(String couleurCarrosserie) {
+            this.couleurCarrosserie = couleurCarrosserie;
+            return this;
+        }
 
-    public Car withOption(String option) {
-        options.add(option);
-        return this;
-    }
+        public Builder setCouleurInterieure(String couleurInterieure) {
+            this.couleurInterieure = couleurInterieure;
+            return this;
+        }
 
-    public enum GearBox {
-        BVM, BVA;
-    }
+        public Builder setBoiteDeVitesse(String boiteDeVitesse) {
+            this.boiteDeVitesse = boiteDeVitesse;
+            return this;
+        }
 
-    public static void main(String[] args) {
-        var car = new Car().withEngine("diesel").withOption("GSP").withOption("tuner");
+        public Builder setTailleJantes(int tailleJantes) {
+            this.tailleJantes = tailleJantes;
+            return this;
+        }
+
+        public Car build() {
+            return new Car(this);
+        }
+
+        public static void main(String[] args) {
+            Car voiture = new Car.Builder("Hybride")
+                    .setNombreDeSieges(5)
+                    .setCouleurCarrosserie("Rouge")
+                    .setCouleurInterieure("Noir")
+                    .setBoiteDeVitesse("Automatique")
+                    .setTailleJantes(17)
+                    .build();
+
+            System.out.println(voiture);
+        }
     }
 }
