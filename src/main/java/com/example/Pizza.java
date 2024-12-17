@@ -53,4 +53,5 @@ public class Pizza {
     public double getDureeCuissonConseillee() {
         return dureeCuissonConseillee;
     }
+
 }
