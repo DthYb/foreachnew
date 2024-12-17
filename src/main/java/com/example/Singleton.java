@@ -3,7 +3,7 @@ package com.example;
 public class Singleton {
     private String name;
 
-    public Singleton(String name) {
+    private Singleton(String name) {
         this.name = name;
     }
 
